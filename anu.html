@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Beautiful ANU .. myy STONTWOMEN</title>
+    <link rel="stylesheet" href="anu.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #ffe6e6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ffb3b3;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: float 6s ease-in infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #ffcccc;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .tab {
+            padding: 0.8rem 1.5rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: #d14d4d;
+            user-select: none;
+        }
+        
+        .tab:hover {
+            background-color: #ffb3b3;
+            transform: translateY(-3px);
+        }
+        
+        .tab.active {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 1s;
+            min-height: 80vh;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Home Section */
+        #home {
+            text-align: center;
+        }
+        
+        .couple-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff6b6b;
+            margin: 1rem auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .couple-photo:hover {
+            transform: scale(1.05);
+        }
+        
+        .love-message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Memories Section */
+        #memories {
+            text-align: center;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .memory-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            aspect-ratio: 1/1;
+        }
+        
+        .memory-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .memory-item img, .memory-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .memory-item:hover img, .memory-item:hover video {
+            transform: scale(1.1);
+        }
+        
+        .memory-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .memory-item:hover .memory-caption {
+            transform: translateY(0);
+        }
+        
+        /* Reasons Section */
+        #reasons {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .reasons-list {
+            list-style-type: none;
+            counter-reset: reason-counter;
+        }
+        
+        .reason-item {
+            background-color: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+            counter-increment: reason-counter;
+        }
+        
+        .reason-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .reason-item::before {
+            content: counter(reason-counter);
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ff6b6b;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .reason-item h3 {
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+            padding-left: 30px;
+        }
+        
+        .reason-item p {
+            padding-left: 30px;
+            line-height: 1.6;
+        }
+        
+        /* Future Section */
+        #future {
+            text-align: center;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #ff6b6b;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #ff6b6b;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+            text-align: right;
+        }
+        
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Messages Section */
+        #messages {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .message {
+            background-color: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .message:hover {
+            transform: scale(1.02);
+        }
+        
+        .message::before {
+            content: '"';
+            position: absolute;
+            font-size: 5rem;
+            color: rgba(255, 107, 107, 0.1);
+            top: -20px;
+            left: 10px;
+            line-height: 1;
+        }
+        
+        .message p {
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .message-date {
+            text-align: right;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .heart-beat {
+            font-size: 2rem;
+            color: white;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 0.5rem 1rem;
+                margin: 0.3rem;
+                font-size: 0.9rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .left, .right {
+                left: 0;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+    // Tab switching functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Create floating hearts
+        const heartsContainer = document.querySelector('.hearts');
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.animationDelay = `${Math.random() * 5}s`;
+            heartsContainer.appendChild(heart);
+        }
+    });
+</script>
+    <script src="anu.js"></script>
+    <header>
+        <div class="hearts" id="hearts-container"></div>
+        <div class="header-content">
+            <h1>Happy Girlfriend's Day, <span id="gf-name">ANU, MERI STONT-WOMEN</span>!</h1>
+            <p>I LOVE YOU JAANU </p>
+        </div>
+    </header>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="home">Home</div>
+        <div class="tab" data-tab="memories">Our Memories</div>
+        <div class="tab" data-  tab="reasons">kyu karta hu tujhse pyaarrr</div>
+        <div class="tab" data-tab="future"> Future</div>
+        <div class="tab" data-tab="messages">Love Notes</div>
+    </div>
+    
+    <div class="tab-content active" id="home">
+        <img src="https://via.placeholder.com/200x200" alt="Couple Photo" class="couple-photo" id="main-photo">
+        <div class="love-message">
+            <h2>Oyee SUN</h2>
+            <p>26TH june the best day jab mila tha terese (ONLINE hahahah),Jindagi badal gayi , ek dum se loyal rehne ka mn karne laga . Har din chahe subha school se phele wala call ho ya raat mai sonne se phele wala call ho... tu hi mera din aur raat hai. Yeh site tere liye bana di maine dekhle pyaar mai kya kuch nhi karta hu mai
+            <p>Site mai dekh aur upar niche CRAZY CHEEZE HAI .</p>
+            <p>I love you meri jaan....meri stontwoman>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="memories">
+        <h2>Our Special Moments</h2>
+        <p>Tyehh hamari memory hai dekh mera bacha .<p>
+        
+        <div class="gallery">
+            <div class="memory-item">
+                <img src="https://via.placeholder.com/300x300" alt="Memory 1">
+                <div class="memory-caption">Our first date</div>
+            </div>
+            <div class="memory-item">
+                <img src="https://via.placeholder.com/300x300" alt="Memory 2">
+                <div class="memory-caption">That amazing trip</div>
+            </div>
+            <div class="memory-item">
+                <video controls>
+                    <source src="your-video-file.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="memory-caption">Our fun time at the beach</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="reasons">
+        <h2>kuch reasons that i love you </h2?>
+        <p></p>
+        
+        <ul class="reasons-list">
+            <li class="reason-item">
+                <h3>Teri awazz</h3>
+                <p>Jab bhi sunta hu pagal hojata hu ki haa yehi hai meri wali.</p>
+            </li>
+            <li class="reason-item">
+                <h3>meri care karna </h3>
+                <p>jab bhi bolti hai khyaal rakhna ,aapki tension meri hai.. ahhhh tu meri hi hai .</p>
+            </li>
+            <li class="reason-item">
+                <h3>tera hasna </h3>
+                <p>tera khush hona hi mera khushh rhena hai....</p>
+            </li>
+            <li class="reason-item">
+                <h3>tera possesion jamana</h3>
+                <p>bolna ki yeh mera hai aur sirf mera hai ,... no sharing ahh tabhi acha lagta hai bhut.</p>
+            </li>
+            <li class="reason-item">
+                <h3>mere hasana </h3>
+                <p>apni choti choti baato se merko hasana .</p>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="tab-content" id="future">
+        <h2>hamara Beautiful Future</h2>
+        <p>yeh kuch chize hai jo hum sath karenge .</p>
+        
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>10august </h3>
+                    <p>First date ahhhhh sab notes wali chizz karenge .</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>26 december</h3>
+                    <p>BAR mai daaru peeke nachneegee.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>ON 26th December,2031</h3>
+                    <p>Hamara roka hoga ,,, ha hamari shaadi .... hamari anu hamari...yyeyeyye</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>Forever</h3>
+                    <p>Sath mai budhe hoke , sath mai marege .</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="messages">
+        <h2>Love Notes</h2>
+        <p>dekhhh</p>
+        
+        <div class="message">
+            <ol>
+        <li>phele toh mai roooo dunga bhai...meri jindagi mere samne se aari hogi</li>
+        <li>Tightest Hug meri jaan ko</li>
+        <li>kiss</li>
+        <li>Mandir</li>
+        <li>fir aake fir kiss</li>
+        <li>Tatoo studio</li>
+        <li>fukenge</li>
+        <li>again kiss</li>
+        <li>smoke switch while kissing</li>
+        <li>chewing gum then switch</li>
+        <li>payal pehnaunga</li>
+        <li>firr kiss</li>
+        <li>Photobooth aur waha bhi kisss wali pic</li>
+        <li>hickiee</li>
+        <li>Reels and pics</li>
+        <li>soyenge Godh mai RAKHLU SAR</li>
+        <li>talk a lot</li>
+        <li>FInally propose and final KISSsss</li>
+        <li>usko ghhar chodunga</li>
+    </ol>
+            <div class="message-date">10th AUG 2025</div>
+        </div
+
